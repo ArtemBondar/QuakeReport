@@ -47,39 +47,41 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         magnitudeCircle.setColor(magnitudeColor);
 
         String originalLocation = currentEarthquake.getLocation();
-        String primaryLocation;
-        String locationOffset;
-        if (originalLocation.contains(LOCATION_SEPARATOR)) {
-            String[] parts = originalLocation.split(LOCATION_SEPARATOR);
-            locationOffset = parts[0] + LOCATION_SEPARATOR;
-            primaryLocation = parts[1];
-
-        } else {
-            locationOffset = getContext().getString(R.string.near_the);
-            primaryLocation = originalLocation;
-        }
-
 
         TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset);
-        locationOffsetView.setText(locationOffset);
+        locationOffsetView.setText(getSeparateLocations(originalLocation)[0]);
 
         TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location);
-        primaryLocationView.setText(primaryLocation);
-
+        primaryLocationView.setText(getSeparateLocations(originalLocation)[1]);
 
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
 
-
-        String formattedDate = formatDate(dateObject);
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
-        dateView.setText(formattedDate);
+        dateView.setText(formatDate(dateObject));
 
-        String formattedTime = formatTime(dateObject);
         TextView timeView = (TextView) listItemView.findViewById(R.id.time);
-        timeView.setText(formattedTime);
-
+        timeView.setText(formatTime(dateObject));
 
         return listItemView;
+    }
+
+    private String[] getSeparateLocations(String originalLocation) {
+        String[] locations = new String[2];
+        if (originalLocation.contains(LOCATION_SEPARATOR)) {
+            String[] parts = originalLocation.split(LOCATION_SEPARATOR);
+            //locationOffset
+            locations[0] = parts[0] + LOCATION_SEPARATOR;
+            //primaryLocation
+            locations[1] = parts[1];
+
+        } else {
+            //locationOffset
+            locations[0] = getContext().getString(R.string.near_the);
+            //primaryLocation
+            locations[1] = originalLocation;
+        }
+        return locations;
+
     }
 
     private int getMagnitudeColor(double magnitude) {
