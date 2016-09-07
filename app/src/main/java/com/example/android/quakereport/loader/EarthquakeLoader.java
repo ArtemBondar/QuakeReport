@@ -9,13 +9,7 @@ import com.example.android.quakereport.Utils;
 import java.util.List;
 
 public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
-    /**
-     * Tag for log messages
-     */
-    private static final String LOG_TAG = EarthquakeLoader.class.getName();
-    /**
-     * Query URL
-     */
+
     private String url;
 
     public EarthquakeLoader(Context context, String url) {

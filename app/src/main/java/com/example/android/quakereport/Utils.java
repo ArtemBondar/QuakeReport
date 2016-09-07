@@ -199,7 +199,10 @@ public final class Utils {
         return magnitudeFormat.format(magnitude);
     }
 
-    static int getMagnitudeColor(double magnitude, Context context) {
+    /**
+     * Retrieve an actual integer color value in order of magnitude value
+     */
+    public static int getMagnitudeColor(double magnitude, Context context) {
         int magnitudeColorResourceId;
         //finding the closest integer less than the decimal value.
         //The floor of the value 1.2 would be the integer 1
@@ -242,7 +245,10 @@ public final class Utils {
         return ContextCompat.getColor(context, magnitudeColorResourceId);
     }
 
-    static String[] getSeparateLocations(String originalLocation, Context context) {
+    /**
+     * Separate locations
+     */
+    public static String[] getSeparateLocations(String originalLocation, Context context) {
         String[] locations = new String[2];
         if (originalLocation.contains(LOCATION_SEPARATOR)) {
             String[] parts = originalLocation.split(LOCATION_SEPARATOR);

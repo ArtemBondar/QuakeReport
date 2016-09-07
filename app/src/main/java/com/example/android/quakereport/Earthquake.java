@@ -1,5 +1,8 @@
 package com.example.android.quakereport;
 
+/**
+ * Describe earthquake object that retrieved from JSON
+ */
 public class Earthquake {
     private double magnitude;
     private String location;

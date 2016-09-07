@@ -41,7 +41,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     private ListView earthquakeListView;
     private TextView emptyStateTextView;
     private NetworkInfo networkInfo;
-    /**
+    /*
      * Constant value for the earthquake loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
@@ -51,7 +51,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
-
+        //Retrieve information about network
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connMgr.getActiveNetworkInfo();
@@ -79,9 +79,12 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, final List<Earthquake> data) {
+        //Initialize progress bar
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         if (networkInfo != null) {
+            //Hide progress bar
             progressBar.setVisibility(View.GONE);
+            //Display 'No earthquakes found.'
             emptyStateTextView.setText(R.string.empty_data);
 
             // Clear the adapter of previous earthquake data
@@ -104,7 +107,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
                 });
             }
         } else {
+            //Hide progress bar
             progressBar.setVisibility(View.GONE);
+            //Display 'No Internet connection.'
             emptyStateTextView.setText(R.string.no_internet);
         }
     }
