@@ -1,4 +1,4 @@
-package com.example.android.quakereport;
+package com.example.android.quakereport.model;
 
 /**
  * Describe earthquake object that retrieved from JSON

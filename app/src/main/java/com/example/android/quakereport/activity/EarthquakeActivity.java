@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.quakereport;
+package com.example.android.quakereport.activity;
 
 import android.app.LoaderManager;
 import android.content.Intent;
@@ -23,12 +23,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.content.*;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.quakereport.model.Earthquake;
+import com.example.android.quakereport.adapter.EarthquakeAdapter;
+import com.example.android.quakereport.R;
 import com.example.android.quakereport.loader.EarthquakeLoader;
 
 import java.util.ArrayList;
@@ -118,5 +123,22 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     public void onLoaderReset(Loader<List<Earthquake>> loader) {
         // Clear the adapter of previous earthquake data
         earthquakeAdapter.clear();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -3,7 +3,7 @@ package com.example.android.quakereport.loader;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.example.android.quakereport.Earthquake;
+import com.example.android.quakereport.model.Earthquake;
 import com.example.android.quakereport.Utils;
 
 import java.util.List;

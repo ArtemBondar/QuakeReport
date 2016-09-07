@@ -20,6 +20,8 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.example.android.quakereport.model.Earthquake;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
